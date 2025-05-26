@@ -93,9 +93,7 @@ public class Message {
         }
     }
 
-    
-    
-    
+
     
     
     // *** JSON serialization: convert this Message object to JSON string ***
@@ -109,7 +107,6 @@ public class Message {
         return gson.fromJson(json, Message.class);
     }
     
-    
     public void storeMessageToFile() {
         String fileName = "message_" + messageID + ".json"; // message_<id>.json format
         Gson gson = new Gson(); // Optional if you already have toJson()
@@ -122,27 +119,7 @@ public class Message {
         }
     }
     
-    
-    /*public static List<Message> loadStoredMessages() {
-    List<Message> storedMessages = new ArrayList<>();
-    File folder = new File("path/to/messages/folder");
-    File[] files = folder.listFiles((dir, name) -> name.startsWith("message_") && name.endsWith(".json"));
-    if (files != null) {
-        for (File file : files) {
-            try {
-                String json = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                Message msg = Message.fromJson(json);
-                storedMessages.add(msg);
-            } catch (IOException e) {
-                // handle error or skip
-            }
-        }
-    }
-    return storedMessages;
-}
-*/
-    
-   
+
     
     
     public static void runApp() {
