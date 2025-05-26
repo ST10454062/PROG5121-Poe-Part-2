@@ -8,17 +8,17 @@ import com.google.gson.Gson;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Message {
+public final class Message {
     
     // Static variables to track total messages sent and store all messages
     public static int totalMessagesSent = 0;
     public static List<Message> messageList = new ArrayList<>();
     
-    private String messageID;
-    private int messageNumber;
-    private String recipient;
-    private String message;
-    private String messageHash;
+    private final String messageID;
+    private final int messageNumber;
+    private final String recipient;
+    private final String message;
+    private final String messageHash;
 
     // Constructor initializes the message and generates ID and hash
     public Message(int messageNumber, String recipient, String message) {
@@ -70,19 +70,15 @@ public class Message {
     public String getMessage() {
         return message;
     }
-
     public String getRecipient() {
         return recipient;
     }
-
     public String getMessageID() {
         return messageID;
     }
-
     public String getMessageHash() {
         return messageHash;
     }
-
     public int getMessageNumber() {
         return messageNumber;
     }
@@ -97,9 +93,6 @@ public class Message {
             return "Message exceeds 250 characters by " + excess + ", please reduce size.";
         }
     }
-
-
-    
     
     // Converts this Message object into a JSON string using Gson
     public String toJson() {
@@ -132,9 +125,6 @@ public class Message {
             JOptionPane.showMessageDialog(null, "Error saving message.");
         }
     }
-    
-    
-
     
     // Runs the interactive app with menu options
     public static void runApp() {
@@ -256,7 +246,6 @@ public class Message {
                     break;
             }
         }
-
         JOptionPane.showMessageDialog(null, "Total messages sent: " + totalMessagesSent);
     }
 }

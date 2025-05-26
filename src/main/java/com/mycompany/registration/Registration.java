@@ -1,13 +1,9 @@
 package com.mycompany.registration;
-
 import javax.swing.JOptionPane;
-
-
 
 public class Registration {
     
     private static boolean loggedIn = false;
-
 
     public static void main(String[] args) {
         
@@ -33,6 +29,5 @@ public class Registration {
         } else {
             JOptionPane.showMessageDialog(null, "Login failed. Cannot send messages.");
         }
-
     }
 }
