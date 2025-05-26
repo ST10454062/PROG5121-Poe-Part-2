@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.registration.MessageTest" time="3.388" tests="8" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="com.mycompany.registration.LoginTest" time="0.175" tests="33" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="23"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
     <property name="java.class.path" value="C:\Users\jolan\OneDrive\Desktop\registration\target\test-classes;C:\Users\jolan\OneDrive\Desktop\registration\target\classes;C:\Users\jolan\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.3\junit-jupiter-5.10.3.jar;C:\Users\jolan\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\jolan\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jolan\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\jolan\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jolan\.m2\repository\junit\junit\4.13.2\junit-4.13.2.jar;C:\Users\jolan\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\jolan\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\jolan\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\jolan\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\jolan\.m2\repository\com\google\code\gson\gson\2.10.1\gson-2.10.1.jar;"/>
-    <property name="sun.awt.enableExtraMouseButtons" value="true"/>
     <property name="java.vm.vendor" value="Oracle Corporation"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
@@ -59,12 +58,37 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="67.0"/>
   </properties>
-  <testcase name="testValidateMessageLength_Success" classname="com.mycompany.registration.MessageTest" time="0.04"/>
-  <testcase name="testValidateMessageLength_Failure" classname="com.mycompany.registration.MessageTest" time="0.018"/>
-  <testcase name="testCheckMessageID_Valid" classname="com.mycompany.registration.MessageTest" time="0.002"/>
-  <testcase name="testCheckRecipientCell_Success" classname="com.mycompany.registration.MessageTest" time="0.004"/>
-  <testcase name="testCheckRecipientCell_Failure" classname="com.mycompany.registration.MessageTest" time="0.002"/>
-  <testcase name="testToJsonAndFromJson" classname="com.mycompany.registration.MessageTest" time="0.118"/>
-  <testcase name="testMessageSendOptions" classname="com.mycompany.registration.MessageTest" time="3.193"/>
-  <testcase name="testCreateMessageHash" classname="com.mycompany.registration.MessageTest" time="0.003"/>
+  <testcase name="testReturnCellPhoneNumber" classname="com.mycompany.registration.LoginTest" time="0.048"/>
+  <testcase name="testReturnLoginStatus" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testGetRegisteredPassword" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testGetLoginPassword" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testUsernameCorrectlyFormatted_AssertTrue" classname="com.mycompany.registration.LoginTest" time="0.007"/>
+  <testcase name="testPasswordMeetsRequirements_AssertTrue" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testUsernameIncorrectlyFormatted_AssertFalse" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testLoginSuccess" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testLoginFail" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testLoginUser" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCellPhoneIncorrectlyFormatted_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.004"/>
+  <testcase name="testSetLoginUsername" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testSetRegisteredUsername" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testPasswordMeetsRequirements_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testRegisterUser" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCheckPasswordComplexity" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCellPhoneCorrectlyFormatted_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testSetRegisteredPhoneNumber" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testCheckUserName" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCellPhoneCorrectlyFormatted_AssertTrue" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testGetRegisteredPhoneNumber" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testPasswordDoesNotMeetRequirements_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testSetLoginPassword" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testSetRegisteredPassword" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCellPhoneIncorrectlyFormatted_AssertFalse" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testGetRegisteredUsername" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testWelcomeInput" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testGetLoginUsername" classname="com.mycompany.registration.LoginTest" time="0.0"/>
+  <testcase name="testUsernameCorrectlyFormatted_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testAddCellPhoneNumber" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testUsernameIncorrectlyFormatted_AssertEquals" classname="com.mycompany.registration.LoginTest" time="0.001"/>
+  <testcase name="testCheckCellPhoneNumber" classname="com.mycompany.registration.LoginTest" time="0.002"/>
+  <testcase name="testPasswordDoesNotMeetRequirements_AssertFalse" classname="com.mycompany.registration.LoginTest" time="0.002"/>
 </testsuite>
