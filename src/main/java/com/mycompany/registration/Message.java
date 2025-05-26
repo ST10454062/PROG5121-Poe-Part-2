@@ -46,7 +46,7 @@ public class Message {
 
     // Validates the recipient phone number: must be <=13 characters and start with '+'
     public boolean checkRecipientCell() {
-        return recipient != null && recipient.length() <= 13 && recipient.startsWith("+");
+        return recipient != null && recipient.matches("\\+27\\d{9}");
     }
 
     // Creates a hash representation of the message using ID, number, and content
@@ -188,8 +188,18 @@ public class Message {
 
          // Loop through message 
         for (int i = 1; i <= numMessages; i++) {
-            String recipient = JOptionPane.showInputDialog("Enter recipient number (include international code, max 13 chars):");
+            
+            String recipient = JOptionPane.showInputDialog("Enter recipient " + i + "'s number (include international code, max 13 chars):");
             if (recipient == null) return;
+            
+            if (!recipient.matches("\\+27\\d{9}")) {
+                JOptionPane.showMessageDialog(null,
+                        "Invalid cell phone number.\nMust start with +27 and be followed by exactly 9 digits.\nExample: +27831234567");
+                i--; // Retry this message
+                continue;
+            }
+           
+
 
             String messageText = JOptionPane.showInputDialog("Enter message (max 250 characters):");
             if (messageText == null) return;
