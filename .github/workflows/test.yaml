@@ -19,13 +19,7 @@ jobs:
       with:
         distribution: 'temurin'
         java-version: '23'
-
-    - name: Cache Maven packages
-      uses: actions/cache@v3
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}-v2
-        restore-keys: ${{ runner.os }}-maven
+        cache: maven
 
     - name: Build and test with Maven
-      run: mvn clean package
+      run: mvn clean package --file pom.xml
