@@ -57,14 +57,14 @@ public class MessageTest {
         // Simulate sending
         Message.messageList.add(send);
         Message.totalMessagesSent++;
-        assertEquals("Message successfully sent.", Message.messageList.contains(send) ? "Message successfully sent." : "");
+        assertTrue(Message.messageList.contains(send));
 
         // Simulate discard (nothing added)
-        assertEquals("Press O to delete message.", !Message.messageList.contains(discard) ? "Press O to delete message." : "");
+        assertFalse(Message.messageList.contains(discard));
 
         // Simulate store (file created, message not added)
-        discard.storeMessageToFile();
-        assertEquals("Message successfully stored.", "Message successfully stored."); // Simplified assertion
+        boolean result = discard.writeMessageToFile("test_message_" + discard.getMessageID() + ".json");
+        assertTrue(result);
     }
 
     @Test

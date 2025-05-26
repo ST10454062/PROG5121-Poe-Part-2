@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class Message {
     
+    // Static variables to track total messages sent and store all messages
     public static int totalMessagesSent = 0;
     public static List<Message> messageList = new ArrayList<>();
     
@@ -19,6 +20,7 @@ public class Message {
     private String message;
     private String messageHash;
 
+    // Constructor initializes the message and generates ID and hash
     public Message(int messageNumber, String recipient, String message) {
         this.messageNumber = messageNumber;
         this.recipient = recipient;
@@ -37,17 +39,18 @@ public class Message {
         return sb.toString();
     }
 
+    // Checks that the message ID is not null and exactly 10 digits
     public boolean checkMessageID() {
         return messageID != null && messageID.length() == 10;
     }
 
+    // Validates the recipient phone number: must be <=13 characters and start with '+'
     public boolean checkRecipientCell() {
-        // check length <= 13 and starts with +
         return recipient != null && recipient.length() <= 13 && recipient.startsWith("+");
     }
 
+    // Creates a hash representation of the message using ID, number, and content
     public String createMessageHash() {
-        // Format: first two digits of messageID : messageNumber : first word + last word of message (all uppercase)
         String firstTwo = messageID.substring(0, 2);
         String[] words = message.trim().split("\\s+");
         String firstWord = words.length > 0 ? words[0].toUpperCase() : "";
@@ -55,6 +58,7 @@ public class Message {
         return firstTwo + ":" + messageNumber + ":" + firstWord + lastWord;
     }
 
+    // Returns a formatted String with message details
     public String printMessage() {
         return "Message ID: " + messageID +
                 "\nMessage Hash: " + messageHash +
@@ -62,6 +66,7 @@ public class Message {
                 "\nMessage: " + message;
     }
 
+    // Getter methods
     public String getMessage() {
         return message;
     }
@@ -96,32 +101,42 @@ public class Message {
 
     
     
-    // *** JSON serialization: convert this Message object to JSON string ***
+    // Converts this Message object into a JSON string using Gson
     public String toJson() {
         Gson gson = new Gson();
         return gson.toJson(this);
     }
-    // *** JSON deserialization: create Message object from JSON string ***
+    // Static method to recreate a Message object from JSON string
     public static Message fromJson(String json) {
         Gson gson = new Gson();
         return gson.fromJson(json, Message.class);
     }
     
-    public void storeMessageToFile() {
-        String fileName = "message_" + messageID + ".json"; // message_<id>.json format
-        Gson gson = new Gson(); // Optional if you already have toJson()
-        
+    // Stores the current message object to a JSON file
+    public boolean writeMessageToFile(String fileName) {
+        Gson gson = new Gson(); 
         try (FileWriter writer = new FileWriter(fileName)) {
                 writer.write(gson.toJson(this));
-                JOptionPane.showMessageDialog(null, "Message stored to file:\n" + fileName);
+                return true;
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Error saving message: " + e.getMessage());
+            return false;
         }
     }
     
+    // Wrapper with GUI – use only inside runApp()
+    public void storeMessageToFileWithDialog() {
+        String fileName = "message_" + messageID + ".json";
+        if (writeMessageToFile(fileName)) {
+            JOptionPane.showMessageDialog(null, "Message stored to file:\n" + fileName);
+        } else {
+            JOptionPane.showMessageDialog(null, "Error saving message.");
+        }
+    }
+    
+    
 
     
-    
+    // Runs the interactive app with menu options
     public static void runApp() {
         boolean running = true;
         while (running) {
@@ -132,14 +147,13 @@ public class Message {
                             + "\n3) Quit",
                     "QuickChat Menu", JOptionPane.QUESTION_MESSAGE);
 
-            if (menuOption == null) {
-                // user pressed cancel or closed the dialog
+            if (menuOption == null) { // Cancel pressed
                 break;
             }
 
             switch (menuOption) {
                 case "1":
-                    sendMessages();
+                    sendMessages(); // Trigger message sending process
                     break;
                 case "2":
                     JOptionPane.showMessageDialog(null, "Coming Soon.");
@@ -154,6 +168,7 @@ public class Message {
         }
     }
 
+    // Core logic to collect, validate, and send/store messages
     public static void sendMessages() {
         // Ask how many messages user wants to send
         String input = JOptionPane.showInputDialog("Enter number of messages to send:");
@@ -171,6 +186,7 @@ public class Message {
             return;
         }
 
+         // Loop through message 
         for (int i = 1; i <= numMessages; i++) {
             String recipient = JOptionPane.showInputDialog("Enter recipient number (include international code, max 13 chars):");
             if (recipient == null) return;
@@ -217,7 +233,7 @@ public class Message {
                     JOptionPane.showMessageDialog(null, "Message disregarded and not saved");
                     break;
                 case 2: // Store message to send later
-                    message.storeMessageToFile();
+                    message.storeMessageToFileWithDialog();
                     JOptionPane.showMessageDialog(null, "Message successfully stored to send later:\n\n"
                             + "Message ID: " + message.getMessageID() + "\n"
                             + "Message Number: " + message.getMessageNumber() + "\n"
